@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.53" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\sunamoWithoutDep\SunamoExceptions\SunamoExceptions.csproj" />
+    <ProjectReference Include="..\..\..\sunamoWithoutDep\SunamoShared\SunamoShared.csproj" />
+    <ProjectReference Include="..\..\..\sunamo\shared\shared.csproj" />
+    <ProjectReference Include="..\..\..\sunamo\sunamo\sunamo.csproj" />
+  </ItemGroup>
+
+</Project>
