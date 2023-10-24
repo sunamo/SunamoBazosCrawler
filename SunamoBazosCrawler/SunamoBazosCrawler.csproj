@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.53" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.54" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\sunamoWithoutDep\SunamoExceptions\SunamoExceptions.csproj" />
