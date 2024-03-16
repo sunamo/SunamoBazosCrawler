@@ -1,5 +1,5 @@
 namespace research.Data;
-internal class DatingAd
+public class DatingAd
 {
     public string Title;
     public string Description;

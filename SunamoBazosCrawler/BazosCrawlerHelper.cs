@@ -8,9 +8,9 @@ public class BazosCrawlerHelper
         ParseFromOnline(url, priceMax, result);
     }
 
-    private static void ParseFromOnline(string url, int priceMax, List<DatingAd> result)
+    private static async Task ParseFromOnline(string url, int priceMax, List<DatingAd> result)
     {
-        var html = HttpRequestHelper.DownloadOrRead(url);
+        var html = await HttpRequestHelper.DownloadOrRead(url);
 
         var hd = HtmlAgilityHelper.CreateHtmlDocument();
 

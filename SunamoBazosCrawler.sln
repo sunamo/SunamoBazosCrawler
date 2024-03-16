@@ -5,7 +5,7 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunamoBazosCrawler", "SunamoBazosCrawler\SunamoBazosCrawler.csproj", "{8FD53DFC-661F-415D-B66A-F364D2A8C250}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sunamo", "..\..\sunamo\sunamo\sunamo.csproj", "{A3BE7EB0-BDE0-462A-B6AE-E22C44C5456A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sunamo", "..\..\sunamo\SunamoShared\SunamoShared.csproj", "{A3BE7EB0-BDE0-462A-B6AE-E22C44C5456A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "shared", "..\..\sunamo\shared\shared.csproj", "{77719C0D-7C8B-4B9E-A644-AEE7CEB35134}"
 EndProject
