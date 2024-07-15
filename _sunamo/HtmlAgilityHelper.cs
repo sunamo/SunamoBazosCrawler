@@ -10,7 +10,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 namespace SunamoBazosCrawler._sunamo;
+
 internal class HtmlAgilityHelper
 {
     internal static bool _trimTexts = true;
@@ -137,7 +139,7 @@ internal class HtmlAgilityHelper
             else
             {
                 bool cont = true;
-                var p = SHSplit.Split(hodnotaAtributu, AllStrings.space);
+                var p = SHSplit.SplitMore(hodnotaAtributu, AllStrings.space);
                 foreach (var item2 in p)
                 {
                     if (!attrValue.Contains(item2))
