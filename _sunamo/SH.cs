@@ -1,16 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+
 namespace SunamoBazosCrawler._sunamo;
+using System.Text.RegularExpressions;
+
 internal class SH
 {
     internal static bool MatchWildcard(string name, string mask)

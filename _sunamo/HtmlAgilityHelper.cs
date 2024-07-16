@@ -1,17 +1,8 @@
-using HtmlAgilityPack;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HtmlAgilityPack;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SunamoBazosCrawler._sunamo;
+using HtmlAgilityPack;
+using System.Collections.Generic;
+using System.Linq;
 
 internal class HtmlAgilityHelper
 {

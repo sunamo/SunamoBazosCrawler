@@ -1,18 +1,8 @@
-using HtmlAgilityPack;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using HtmlAgilityPack;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+
 namespace SunamoBazosCrawler._sunamo;
+using HtmlAgilityPack;
+using System.Net;
+
 internal class HtmlAssistant
 {
     internal static string InnerText(HtmlNode node, bool recursive, string tag, string attr, string attrValue, bool contains = false)

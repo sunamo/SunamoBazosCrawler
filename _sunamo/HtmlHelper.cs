@@ -1,16 +1,7 @@
-using HtmlAgilityPack;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HtmlAgilityPack;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 namespace SunamoBazosCrawler._sunamo;
+using HtmlAgilityPack;
+
 internal class HtmlHelper
 {
     internal static string GetValueOfAttribute(string p, HtmlNode divMain, bool _trim = false)
