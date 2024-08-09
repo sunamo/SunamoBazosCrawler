@@ -1,5 +1,5 @@
-
 namespace SunamoBazosCrawler._sunamo;
+
 internal class AllStrings
 {
     internal const string asterisk = "*";

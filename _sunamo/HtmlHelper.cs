@@ -1,6 +1,6 @@
+using HtmlAgilityPack;
 
 namespace SunamoBazosCrawler._sunamo;
-using HtmlAgilityPack;
 
 internal class HtmlHelper
 {
@@ -9,17 +9,12 @@ internal class HtmlHelper
         object o = divMain.Attributes[p]; // divMain.GetAttributeValue(p, null);//
         if (o != null)
         {
-            string st = ((HtmlAttribute)o).Value;
-            if (_trim)
-            {
-                st = st.Trim();
-            }
-            if (st == string.Empty)
-            {
-                return Consts.nulled;
-            }
+            var st = ((HtmlAttribute)o).Value;
+            if (_trim) st = st.Trim();
+            if (st == string.Empty) return Consts.nulled;
             return st;
         }
+
         return string.Empty;
     }
 }

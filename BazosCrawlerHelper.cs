@@ -1,16 +1,18 @@
+using SunamoBazosCrawler._sunamo;
 
 namespace SunamoBazosCrawler;
-using SunamoBazosCrawler._sunamo;
 
 public class BazosCrawlerHelper
 {
-    public static async Task ParseFromOnline(string url, int priceMax, Func<string, Task<string>> httpRequestHelperDownloadOrRead)
+    public static async Task ParseFromOnline(string url, int priceMax,
+        Func<string, Task<string>> httpRequestHelperDownloadOrRead)
     {
-        List<DatingAd> result = new List<DatingAd>();
+        var result = new List<DatingAd>();
         await ParseFromOnline(url, priceMax, result, httpRequestHelperDownloadOrRead);
     }
 
-    private static async Task ParseFromOnline(string url, int priceMax, List<DatingAd> result, Func<string, Task<string>> httpRequestHelperDownloadOrRead)
+    private static async Task ParseFromOnline(string url, int priceMax, List<DatingAd> result,
+        Func<string, Task<string>> httpRequestHelperDownloadOrRead)
     {
         var html = await httpRequestHelperDownloadOrRead(url);
 
@@ -18,9 +20,11 @@ public class BazosCrawlerHelper
 
         hd.LoadHtml(html);
 
-        var maincontent = HtmlAgilityHelper.NodeWithAttr(hd.DocumentNode, true, HtmlTags.div, HtmlAttrs.c, "maincontent");
+        var maincontent =
+            HtmlAgilityHelper.NodeWithAttr(hd.DocumentNode, true, HtmlTags.div, HtmlAttrs.c, "maincontent");
 
-        var inzeraty = HtmlAgilityHelper.NodesWithAttr(maincontent, true, HtmlTags.div, HtmlAttrs.c, "inzeraty inzeratyflex");
+        var inzeraty =
+            HtmlAgilityHelper.NodesWithAttr(maincontent, true, HtmlTags.div, HtmlAttrs.c, "inzeraty inzeratyflex");
 
         foreach (var item in inzeraty)
         {
@@ -35,7 +39,5 @@ public class BazosCrawlerHelper
 
             result.Add(ad);
         }
-
-
     }
 }
