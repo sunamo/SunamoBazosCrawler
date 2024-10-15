@@ -1,6 +1,5 @@
-using SunamoBazosCrawler._sunamo;
-
 namespace SunamoBazosCrawler;
+using SunamoBazosCrawler._sunamo;
 
 public class BazosCrawlerHelper
 {

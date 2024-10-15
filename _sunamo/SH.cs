@@ -1,6 +1,5 @@
-using System.Text.RegularExpressions;
-
 namespace SunamoBazosCrawler._sunamo;
+using System.Text.RegularExpressions;
 
 internal class SH
 {

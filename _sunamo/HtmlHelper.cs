@@ -1,6 +1,5 @@
-using HtmlAgilityPack;
-
 namespace SunamoBazosCrawler._sunamo;
+using HtmlAgilityPack;
 
 internal class HtmlHelper
 {

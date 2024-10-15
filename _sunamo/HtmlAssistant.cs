@@ -1,7 +1,6 @@
+namespace SunamoBazosCrawler._sunamo;
 using System.Net;
 using HtmlAgilityPack;
-
-namespace SunamoBazosCrawler._sunamo;
 
 internal class HtmlAssistant
 {
