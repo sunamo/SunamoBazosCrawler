@@ -10,7 +10,7 @@ internal class HtmlHelper
         {
             var st = ((HtmlAttribute)o).Value;
             if (_trim) st = st.Trim();
-            if (st == string.Empty) return Consts.nulled;
+            if (st == string.Empty) return "(null)";
             return st;
         }
 

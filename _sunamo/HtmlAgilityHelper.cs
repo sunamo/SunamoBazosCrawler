@@ -85,14 +85,14 @@ internal class HtmlAgilityHelper
 
     private static bool HasTagName(HtmlNode hn, string tag)
     {
-        if (tag == AllStrings.asterisk) return true;
+        if (tag == "*") return true;
         return hn.Name == tag;
     }
 
     private static bool HasTagAttr(HtmlNode item, string atribut, string hodnotaAtributu, bool isWildCard,
         bool enoughIsContainsAttribute, bool searchAsSingleString)
     {
-        if (hodnotaAtributu == AllStrings.asterisk) return true;
+        if (hodnotaAtributu == "*") return true;
         var contains = false;
         var attrValue = HtmlHelper.GetValueOfAttribute(atribut, item);
         if (enoughIsContainsAttribute)
@@ -108,7 +108,7 @@ internal class HtmlAgilityHelper
             else
             {
                 var cont = true;
-                var p = SHSplit.SplitMore(hodnotaAtributu, AllStrings.space);
+                var p = SHSplit.SplitMore(hodnotaAtributu, "");
                 foreach (var item2 in p)
                     if (!attrValue.Contains(item2))
                     {
