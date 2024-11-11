@@ -108,7 +108,7 @@ internal class HtmlAgilityHelper
             else
             {
                 var cont = true;
-                var p = SHSplit.SplitMore(hodnotaAtributu, "");
+                var p = SHSplit.SplitMore(hodnotaAtributu, " ");
                 foreach (var item2 in p)
                     if (!attrValue.Contains(item2))
                     {
