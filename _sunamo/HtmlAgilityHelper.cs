@@ -73,15 +73,6 @@ internal class HtmlAgilityHelper
         return vr;
     }
 
-    internal static List<HtmlNode> TrimTexts(HtmlNodeCollection htmlNodeCollection)
-    {
-        if (!_trimTexts) return htmlNodeCollection.ToList();
-        var vr = new List<HtmlNode>();
-        foreach (var item in htmlNodeCollection)
-            if (item.Name != textNode)
-                vr.Add(item);
-        return vr;
-    }
 
     private static bool HasTagName(HtmlNode hn, string tag)
     {

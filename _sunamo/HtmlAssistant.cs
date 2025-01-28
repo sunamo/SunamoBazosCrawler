@@ -10,11 +10,6 @@ internal class HtmlAssistant
         return InnerContentWithAttr(node, recursive, tag, attr, attrValue, false, contains);
     }
 
-    internal static string InnerHtmlWithAttr(HtmlNode node, bool recursive, string tag, string attr, string attrValue,
-        bool contains = false)
-    {
-        return InnerContentWithAttr(node, recursive, tag, attr, attrValue, true, contains);
-    }
 
     internal static string HtmlDecode(string v)
     {
