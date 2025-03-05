@@ -1,11 +1,9 @@
 namespace SunamoBazosCrawler._sunamo;
-using HtmlAgilityPack;
 
 internal class HtmlAgilityHelper
 {
     internal const string textNode = "#text";
     internal static bool _trimTexts = true;
-
     internal static HtmlDocument CreateHtmlDocument()
     {
         var hd = new HtmlDocument();
@@ -18,19 +16,16 @@ internal class HtmlAgilityHelper
         //hd.OptionCheckSyntax = false;
         return hd;
     }
-
     internal static HtmlNode NodeWithAttr(HtmlNode node, bool recursive, string tag, string attr, string attrValue,
         bool contains = false)
     {
         return NodesWithAttrWorker(node, recursive, tag, attr, attrValue, false, contains).FirstOrDefault();
     }
-
     internal static List<HtmlNode> NodesWithAttr(HtmlNode node, bool recursive, string tag, string attr,
         string attrValue, bool contains = false)
     {
         return NodesWithAttrWorker(node, recursive, tag, attr, attrValue, false, contains);
     }
-
     private static List<HtmlNode> NodesWithAttrWorker(HtmlNode node, bool recursive, string tag, string atribut,
         string hodnotaAtributu, bool isWildCard, bool enoughIsContainsAttribute, bool searchAsSingleString = true)
     {
@@ -40,12 +35,10 @@ internal class HtmlAgilityHelper
         if (tag != textNode) vr = TrimTexts(vr);
         return vr;
     }
-
     internal static List<HtmlNode> TrimTexts(List<HtmlNode> c2)
     {
         return TrimTexts(c2, true);
     }
-
     /// <summary>
     ///     A2 =remove #text
     ///     A3 = remove #comment
@@ -69,17 +62,13 @@ internal class HtmlAgilityHelper
                     add = false;
             if (add) vr.Add(item);
         }
-
         return vr;
     }
-
-
     private static bool HasTagName(HtmlNode hn, string tag)
     {
         if (tag == "*") return true;
         return hn.Name == tag;
     }
-
     private static bool HasTagAttr(HtmlNode item, string atribut, string hodnotaAtributu, bool isWildCard,
         bool enoughIsContainsAttribute, bool searchAsSingleString)
     {
@@ -106,7 +95,6 @@ internal class HtmlAgilityHelper
                         cont = false;
                         break;
                     }
-
                 contains = cont;
             }
         }
@@ -114,10 +102,8 @@ internal class HtmlAgilityHelper
         {
             contains = attrValue == hodnotaAtributu;
         }
-
         return contains;
     }
-
     internal static void RecursiveReturnTagsWithContainsAttr(List<HtmlNode> vr, HtmlNode htmlNode, bool recursively,
         string p, string atribut, string hodnotaAtributu, bool isWildCard, bool enoughIsContainsAttribute,
         bool searchAsSingleString = true)

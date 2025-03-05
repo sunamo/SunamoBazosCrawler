@@ -1,5 +1,4 @@
 namespace SunamoBazosCrawler._sunamo;
-using HtmlAgilityPack;
 
 internal class HtmlHelper
 {
@@ -13,7 +12,6 @@ internal class HtmlHelper
             if (st == string.Empty) return "(null)";
             return st;
         }
-
         return string.Empty;
     }
 }
