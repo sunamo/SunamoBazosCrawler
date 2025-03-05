@@ -1,5 +1,4 @@
 namespace SunamoBazosCrawler._sunamo;
-using System.Text.RegularExpressions;
 
 internal class SH
 {
@@ -7,7 +6,6 @@ internal class SH
     {
         return IsMatchRegex(name, mask, '?', '*');
     }
-
     private static bool IsMatchRegex(string str, string pat, char singleWildcard, char multipleWildcard)
     {
         // If I compared .vs with .vs, return false before
