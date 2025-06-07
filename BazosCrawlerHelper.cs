@@ -2,13 +2,13 @@ namespace SunamoBazosCrawler;
 
 public class BazosCrawlerHelper
 {
-    public static async Task ParseFromOnline(string url, int priceMax,
+    public static async Task ParseFromOnline(string url,
         Func<string, Task<string>> httpRequestHelperDownloadOrRead)
     {
         var result = new List<DatingAd>();
-        await ParseFromOnline(url, priceMax, result, httpRequestHelperDownloadOrRead);
+        await ParseFromOnline(url, result, httpRequestHelperDownloadOrRead);
     }
-    private static async Task ParseFromOnline(string url, int priceMax, List<DatingAd> result,
+    private static async Task ParseFromOnline(string url, List<DatingAd> result,
         Func<string, Task<string>> httpRequestHelperDownloadOrRead)
     {
         var html = await httpRequestHelperDownloadOrRead(url);

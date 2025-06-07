@@ -14,7 +14,7 @@ internal class HtmlAssistant
     internal static string InnerContentWithAttr(HtmlNode node, bool recursive, string tag, string attr,
         string attrValue, bool html, bool contains = false)
     {
-        var node2 = HtmlAgilityHelper.NodeWithAttr(node, true, tag, attr, attrValue, contains);
+        var node2 = HtmlAgilityHelper.NodeWithAttr(node, recursive, tag, attr, attrValue, contains);
         if (node2 != null)
         {
             var c = string.Empty;
