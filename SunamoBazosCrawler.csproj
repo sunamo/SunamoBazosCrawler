@@ -11,9 +11,9 @@
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
-    <Version>25.3.29.1</Version>
+    <Version>25.6.7.1</Version>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <PackageReleaseNotes>Updated nuget to latest versions</PackageReleaseNotes>
+    <PackageReleaseNotes>Removed unused method parameters</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.12.0" />
