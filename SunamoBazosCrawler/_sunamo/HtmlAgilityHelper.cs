@@ -8,7 +8,7 @@ internal class HtmlAgilityHelper
     {
         var hd = new HtmlDocument();
         hd.OptionOutputOriginalCase = true;
-        // false - i přesto mi tag ukončený na / převede na </Page>. Musí se ještě tagy jež nechci ukončovat vymazat z HtmlAgilityPack.HtmlNode.ElementsFlags.Remove("form"); před načetním XML https://html-agility-pack.net/knowledge-base/7104652/htmlagilitypack-close-form-tag-automatically
+        // false - even so the tag ending with / converts to </Page>. Tags that I don't want to terminate must still be deleted from HtmlAgilityPack.HtmlNode.ElementsFlags.Remove("form"); before loading XML https://html-agility-pack.net/knowledge-base/7104652/htmlagilitypack-close-form-tag-automatically
         hd.OptionAutoCloseOnEnd = false;
         hd.OptionOutputAsXml = false;
         hd.OptionFixNestedTags = false;
