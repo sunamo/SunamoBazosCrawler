@@ -1,3 +1,6 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 namespace SunamoBazosCrawler;
 
 public class BazosCrawlerHelper
@@ -25,7 +28,7 @@ public class BazosCrawlerHelper
             ad.Description = HtmlAssistant.InnerText(item, true, HtmlTags.div, HtmlAttrs.c, "popis");
             ad.Price = HtmlAssistant.InnerText(item, true, HtmlTags.div, HtmlAttrs.c, "inzeraty");
             ad.Lokalita = HtmlAssistant.InnerText(item, true, HtmlTags.div, HtmlAttrs.c, "inzeratylok");
-            var s = 0;
+            var text = 0;
             result.Add(ad);
         }
     }

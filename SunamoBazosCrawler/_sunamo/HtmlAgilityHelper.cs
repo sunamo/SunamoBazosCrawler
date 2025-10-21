@@ -1,3 +1,6 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 namespace SunamoBazosCrawler._sunamo;
 
 internal class HtmlAgilityHelper
@@ -88,8 +91,8 @@ internal class HtmlAgilityHelper
             else
             {
                 var cont = true;
-                var p = SHSplit.Split(hodnotaAtributu, " ");
-                foreach (var item2 in p)
+                var parameter = SHSplit.Split(hodnotaAtributu, " ");
+                foreach (var item2 in parameter)
                     if (!attrValue.Contains(item2))
                     {
                         cont = false;
@@ -105,31 +108,31 @@ internal class HtmlAgilityHelper
         return contains;
     }
     internal static void RecursiveReturnTagsWithContainsAttr(List<HtmlNode> vr, HtmlNode htmlNode, bool recursively,
-        string p, string atribut, string hodnotaAtributu, bool isWildCard, bool enoughIsContainsAttribute,
+        string parameter, string atribut, string hodnotaAtributu, bool isWildCard, bool enoughIsContainsAttribute,
         bool searchAsSingleString = true)
     {
         /*
 isWildCard -
          */
-        p = p.ToLower();
+        parameter = parameter.ToLower();
         //atribut = atribut.ToLower();
         //hodnotaAtributu = atribut.ToLower();
         if (htmlNode == null) return;
         foreach (var item in htmlNode.ChildNodes)
         {
             var attrValue = HtmlAssistant.GetValueOfAttribute(atribut, item);
-            if (HasTagName(item, p))
+            if (HasTagName(item, parameter))
             {
                 if (HasTagAttr(item, atribut, hodnotaAtributu, isWildCard, enoughIsContainsAttribute,
                         searchAsSingleString)) vr.Add(item);
                 if (recursively)
-                    RecursiveReturnTagsWithContainsAttr(vr, item, recursively, p, atribut, hodnotaAtributu, isWildCard,
+                    RecursiveReturnTagsWithContainsAttr(vr, item, recursively, parameter, atribut, hodnotaAtributu, isWildCard,
                         enoughIsContainsAttribute, searchAsSingleString);
             }
             else
             {
                 if (recursively)
-                    RecursiveReturnTagsWithContainsAttr(vr, item, recursively, p, atribut, hodnotaAtributu, isWildCard,
+                    RecursiveReturnTagsWithContainsAttr(vr, item, recursively, parameter, atribut, hodnotaAtributu, isWildCard,
                         enoughIsContainsAttribute, searchAsSingleString);
             }
         }

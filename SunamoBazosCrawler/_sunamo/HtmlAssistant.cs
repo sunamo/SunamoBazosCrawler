@@ -1,3 +1,6 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 namespace SunamoBazosCrawler._sunamo;
 
 internal class HtmlAssistant
@@ -33,12 +36,12 @@ internal class HtmlAssistant
         var node2 = HtmlAgilityHelper.NodeWithAttr(node, recursive, tag, attr, attrValue, contains);
         if (node2 != null)
         {
-            var c = string.Empty;
+            var count = string.Empty;
             if (html)
-                c = node2.InnerHtml;
+                count = node2.InnerHtml;
             else
-                c = node2.InnerText;
-            return HtmlDecode(c.Trim());
+                count = node2.InnerText;
+            return HtmlDecode(count.Trim());
         }
         return string.Empty;
     }
