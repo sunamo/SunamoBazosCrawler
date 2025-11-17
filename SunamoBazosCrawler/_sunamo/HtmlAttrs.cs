@@ -5,4 +5,8 @@ namespace SunamoBazosCrawler._sunamo;
 internal class HtmlAttrs
 {
     internal static string classAttribute = "class";
+    /// <summary>
+    /// cant name it class due to mass replacing of class
+    /// </summary>
+    internal static string c = "class";
 }
