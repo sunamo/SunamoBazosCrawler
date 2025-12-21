@@ -1,23 +1,20 @@
-// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
-
 namespace SunamoBazosCrawler._sunamo;
 
 internal class HtmlAgilityHelper
 {
-    internal const string textNode = "#text";
-    internal static bool _trimTexts = true;
+    internal const string TextNode = "#text";
+    internal static bool ShouldTrimTexts = true;
     internal static HtmlDocument CreateHtmlDocument()
     {
-        var hd = new HtmlDocument();
-        hd.OptionOutputOriginalCase = true;
+        var htmlDocument = new HtmlDocument();
+        htmlDocument.OptionOutputOriginalCase = true;
         // false - even so the tag ending with / converts to </Page>. Tags that I don't want to terminate must still be deleted from HtmlAgilityPack.HtmlNode.ElementsFlags.Remove("form"); before loading XML https://html-agility-pack.net/knowledge-base/7104652/htmlagilitypack-close-form-tag-automatically
-        hd.OptionAutoCloseOnEnd = false;
-        hd.OptionOutputAsXml = false;
-        hd.OptionFixNestedTags = false;
+        htmlDocument.OptionAutoCloseOnEnd = false;
+        htmlDocument.OptionOutputAsXml = false;
+        htmlDocument.OptionFixNestedTags = false;
         //when OptionCheckSyntax = false, raise NullReferenceException in Load/LoadHtml
-        //hd.OptionCheckSyntax = false;
-        return hd;
+        //htmlDocument.OptionCheckSyntax = false;
+        return htmlDocument;
     }
     internal static HtmlNode NodeWithAttr(HtmlNode node, bool recursive, string tag, string attr, string attrValue,
         bool contains = false)
@@ -29,110 +26,110 @@ internal class HtmlAgilityHelper
     {
         return NodesWithAttrWorker(node, recursive, tag, attr, attrValue, false, contains);
     }
-    private static List<HtmlNode> NodesWithAttrWorker(HtmlNode node, bool recursive, string tag, string atribut,
-        string hodnotaAtributu, bool isWildCard, bool enoughIsContainsAttribute, bool searchAsSingleString = true)
+    private static List<HtmlNode> NodesWithAttrWorker(HtmlNode node, bool recursive, string tag, string attribute,
+        string attributeValue, bool isWildCard, bool enoughIsContainsAttribute, bool searchAsSingleString = true)
     {
-        var vr = new List<HtmlNode>();
-        RecursiveReturnTagsWithContainsAttr(vr, node, recursive, tag, atribut, hodnotaAtributu, isWildCard,
+        var result = new List<HtmlNode>();
+        RecursiveReturnTagsWithContainsAttr(result, node, recursive, tag, attribute, attributeValue, isWildCard,
             enoughIsContainsAttribute, searchAsSingleString);
-        if (tag != textNode) vr = TrimTexts(vr);
-        return vr;
+        if (tag != TextNode) result = TrimTexts(result);
+        return result;
     }
-    internal static List<HtmlNode> TrimTexts(List<HtmlNode> c2)
+    internal static List<HtmlNode> TrimTexts(List<HtmlNode> nodes)
     {
-        return TrimTexts(c2, true);
+        return TrimTexts(nodes, true);
     }
     /// <summary>
     ///     A2 =remove #text
     ///     A3 = remove #comment
     /// </summary>
-    /// <param name="c2"></param>
+    /// <param name="nodes"></param>
     /// <param name="texts"></param>
     /// <param name="comments"></param>
-    internal static List<HtmlNode> TrimTexts(List<HtmlNode> c2, bool texts, bool comments = false)
+    internal static List<HtmlNode> TrimTexts(List<HtmlNode> nodes, bool texts, bool comments = false)
     {
-        if (!_trimTexts) return c2;
-        var vr = new List<HtmlNode>();
+        if (!ShouldTrimTexts) return nodes;
+        var result = new List<HtmlNode>();
         var add = true;
-        foreach (var item in c2)
+        foreach (var item in nodes)
         {
             add = true;
             if (texts)
-                if (item.Name == textNode)
+                if (item.Name == TextNode)
                     add = false;
             if (comments)
                 if (item.Name == "#comment")
                     add = false;
-            if (add) vr.Add(item);
+            if (add) result.Add(item);
         }
-        return vr;
+        return result;
     }
-    private static bool HasTagName(HtmlNode hn, string tag)
+    private static bool HasTagName(HtmlNode node, string tag)
     {
         if (tag == "*") return true;
-        return hn.Name == tag;
+        return node.Name == tag;
     }
-    private static bool HasTagAttr(HtmlNode item, string atribut, string hodnotaAtributu, bool isWildCard,
+    private static bool HasTagAttr(HtmlNode item, string attribute, string attributeValue, bool isWildCard,
         bool enoughIsContainsAttribute, bool searchAsSingleString)
     {
-        if (hodnotaAtributu == "*") return true;
+        if (attributeValue == "*") return true;
         var contains = false;
-        var attrValue = HtmlAssistant.GetValueOfAttribute(atribut, item);
+        var attrValue = HtmlAssistant.GetValueOfAttribute(attribute, item);
         if (enoughIsContainsAttribute)
         {
             if (searchAsSingleString)
             {
                 if (isWildCard)
-                    contains = SH.MatchWildcard(attrValue, hodnotaAtributu);
+                    contains = SH.MatchWildcard(attrValue, attributeValue);
                 else
-                    contains = attrValue.Contains(hodnotaAtributu);
+                    contains = attrValue.Contains(attributeValue);
                 //
             }
             else
             {
-                var cont = true;
-                var parameter = SHSplit.Split(hodnotaAtributu, " ");
-                foreach (var item2 in parameter)
+                var containsAll = true;
+                var parts = SHSplit.Split(attributeValue, " ");
+                foreach (var item2 in parts)
                     if (!attrValue.Contains(item2))
                     {
-                        cont = false;
+                        containsAll = false;
                         break;
                     }
-                contains = cont;
+                contains = containsAll;
             }
         }
         else
         {
-            contains = attrValue == hodnotaAtributu;
+            contains = attrValue == attributeValue;
         }
         return contains;
     }
-    internal static void RecursiveReturnTagsWithContainsAttr(List<HtmlNode> vr, HtmlNode htmlNode, bool recursively,
-        string parameter, string atribut, string hodnotaAtributu, bool isWildCard, bool enoughIsContainsAttribute,
+    internal static void RecursiveReturnTagsWithContainsAttr(List<HtmlNode> result, HtmlNode htmlNode, bool recursively,
+        string tag, string attribute, string attributeValue, bool isWildCard, bool enoughIsContainsAttribute,
         bool searchAsSingleString = true)
     {
         /*
 isWildCard -
          */
-        parameter = parameter.ToLower();
-        //atribut = atribut.ToLower();
-        //hodnotaAtributu = atribut.ToLower();
+        tag = tag.ToLower();
+        //attribute = attribute.ToLower();
+        //attributeValue = attribute.ToLower();
         if (htmlNode == null) return;
         foreach (var item in htmlNode.ChildNodes)
         {
-            var attrValue = HtmlAssistant.GetValueOfAttribute(atribut, item);
-            if (HasTagName(item, parameter))
+            var attrValue = HtmlAssistant.GetValueOfAttribute(attribute, item);
+            if (HasTagName(item, tag))
             {
-                if (HasTagAttr(item, atribut, hodnotaAtributu, isWildCard, enoughIsContainsAttribute,
-                        searchAsSingleString)) vr.Add(item);
+                if (HasTagAttr(item, attribute, attributeValue, isWildCard, enoughIsContainsAttribute,
+                        searchAsSingleString)) result.Add(item);
                 if (recursively)
-                    RecursiveReturnTagsWithContainsAttr(vr, item, recursively, parameter, atribut, hodnotaAtributu, isWildCard,
+                    RecursiveReturnTagsWithContainsAttr(result, item, recursively, tag, attribute, attributeValue, isWildCard,
                         enoughIsContainsAttribute, searchAsSingleString);
             }
             else
             {
                 if (recursively)
-                    RecursiveReturnTagsWithContainsAttr(vr, item, recursively, parameter, atribut, hodnotaAtributu, isWildCard,
+                    RecursiveReturnTagsWithContainsAttr(result, item, recursively, tag, attribute, attributeValue, isWildCard,
                         enoughIsContainsAttribute, searchAsSingleString);
             }
         }

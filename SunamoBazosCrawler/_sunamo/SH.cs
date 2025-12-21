@@ -1,5 +1,3 @@
-// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 namespace SunamoBazosCrawler._sunamo;
 
 internal class SH
@@ -8,16 +6,16 @@ internal class SH
     {
         return IsMatchRegex(name, mask, '?', '*');
     }
-    private static bool IsMatchRegex(string str, string pat, char singleWildcard, char multipleWildcard)
+    private static bool IsMatchRegex(string input, string pattern, char singleWildcard, char multipleWildcard)
     {
         // If I compared .vs with .vs, return false before
-        if (str == pat) return true;
+        if (input == pattern) return true;
         var escapedSingle = Regex.Escape(new string(singleWildcard, 1));
         var escapedMultiple = Regex.Escape(new string(multipleWildcard, 1));
-        pat = Regex.Escape(pat);
-        pat = pat.Replace(escapedSingle, ".");
-        pat = "^" + pat.Replace(escapedMultiple, ".*") + "$";
-        var reg = new Regex(pat);
-        return reg.IsMatch(str);
+        pattern = Regex.Escape(pattern);
+        pattern = pattern.Replace(escapedSingle, ".");
+        pattern = "^" + pattern.Replace(escapedMultiple, ".*") + "$";
+        var regex = new Regex(pattern);
+        return regex.IsMatch(input);
     }
 }

@@ -1,11 +1,9 @@
-// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 namespace SunamoBazosCrawler._sunamo;
 
 internal class SHSplit
 {
-    internal static List<string> Split(string p, params string[] newLine)
+    internal static List<string> Split(string text, params string[] delimiters)
     {
-        return p.Split(newLine, StringSplitOptions.RemoveEmptyEntries).ToList();
+        return text.Split(delimiters, StringSplitOptions.RemoveEmptyEntries).ToList();
     }
 }

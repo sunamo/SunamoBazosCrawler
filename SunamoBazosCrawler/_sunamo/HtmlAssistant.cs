@@ -1,21 +1,18 @@
-// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
-
 namespace SunamoBazosCrawler._sunamo;
 
 internal class HtmlAssistant
 {
-    internal static string GetValueOfAttribute(string p, HtmlNode divMain, bool _trim = false)
+    internal static string GetValueOfAttribute(string attributeName, HtmlNode node, bool trim = false)
     {
-        object o = divMain.Attributes[p]; // divMain.GetAttributeValue(p, null);//
-        if (o != null)
+        object attribute = node.Attributes[attributeName]; // node.GetAttributeValue(attributeName, null);//
+        if (attribute != null)
         {
-            var st = ((HtmlAttribute)o).Value;
-            if (_trim) st = st.Trim();
+            var value = ((HtmlAttribute)attribute).Value;
+            if (trim) value = value.Trim();
 
-            if (st == string.Empty) return "(null)";
+            if (value == string.Empty) return "(null)";
 
-            return st;
+            return value;
         }
 
         return string.Empty;
@@ -26,9 +23,9 @@ internal class HtmlAssistant
     {
         return InnerContentWithAttr(node, recursive, tag, attr, attrValue, false, contains);
     }
-    internal static string HtmlDecode(string v)
+    internal static string HtmlDecode(string htmlText)
     {
-        return WebUtility.HtmlDecode(v);
+        return WebUtility.HtmlDecode(htmlText);
     }
     internal static string InnerContentWithAttr(HtmlNode node, bool recursive, string tag, string attr,
         string attrValue, bool html, bool contains = false)
@@ -36,12 +33,12 @@ internal class HtmlAssistant
         var node2 = HtmlAgilityHelper.NodeWithAttr(node, recursive, tag, attr, attrValue, contains);
         if (node2 != null)
         {
-            var count = string.Empty;
+            var content = string.Empty;
             if (html)
-                count = node2.InnerHtml;
+                content = node2.InnerHtml;
             else
-                count = node2.InnerText;
-            return HtmlDecode(count.Trim());
+                content = node2.InnerText;
+            return HtmlDecode(content.Trim());
         }
         return string.Empty;
     }

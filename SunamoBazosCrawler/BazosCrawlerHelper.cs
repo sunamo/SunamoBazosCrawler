@@ -1,6 +1,3 @@
-// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
-
 namespace SunamoBazosCrawler;
 
 public class BazosCrawlerHelper
@@ -15,20 +12,19 @@ public class BazosCrawlerHelper
         Func<string, Task<string>> httpRequestHelperDownloadOrRead)
     {
         var html = await httpRequestHelperDownloadOrRead(url);
-        var hd = HtmlAgilityHelper.CreateHtmlDocument();
-        hd.LoadHtml(html);
+        var htmlDocument = HtmlAgilityHelper.CreateHtmlDocument();
+        htmlDocument.LoadHtml(html);
         var maincontent =
-            HtmlAgilityHelper.NodeWithAttr(hd.DocumentNode, true, HtmlTags.div, HtmlAttrs.c, "maincontent");
+            HtmlAgilityHelper.NodeWithAttr(htmlDocument.DocumentNode, true, HtmlTags.Div, HtmlAttrs.C, "maincontent");
         var inzeraty =
-            HtmlAgilityHelper.NodesWithAttr(maincontent, true, HtmlTags.div, HtmlAttrs.c, "inzeraty inzeratyflex");
+            HtmlAgilityHelper.NodesWithAttr(maincontent, true, HtmlTags.Div, HtmlAttrs.C, "inzeraty inzeratyflex");
         foreach (var item in inzeraty)
         {
             var ad = new DatingAd();
-            ad.Title = HtmlAssistant.InnerText(item, true, HtmlTags.h2, HtmlAttrs.c, "nadpis");
-            ad.Description = HtmlAssistant.InnerText(item, true, HtmlTags.div, HtmlAttrs.c, "popis");
-            ad.Price = HtmlAssistant.InnerText(item, true, HtmlTags.div, HtmlAttrs.c, "inzeraty");
-            ad.Lokalita = HtmlAssistant.InnerText(item, true, HtmlTags.div, HtmlAttrs.c, "inzeratylok");
-            var text = 0;
+            ad.Title = HtmlAssistant.InnerText(item, true, HtmlTags.H2, HtmlAttrs.C, "nadpis");
+            ad.Description = HtmlAssistant.InnerText(item, true, HtmlTags.Div, HtmlAttrs.C, "popis");
+            ad.Price = HtmlAssistant.InnerText(item, true, HtmlTags.Div, HtmlAttrs.C, "inzeraty");
+            ad.Lokalita = HtmlAssistant.InnerText(item, true, HtmlTags.Div, HtmlAttrs.C, "inzeratylok");
             result.Add(ad);
         }
     }
