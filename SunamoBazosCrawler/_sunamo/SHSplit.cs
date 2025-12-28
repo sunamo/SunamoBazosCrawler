@@ -1,3 +1,4 @@
+// variables names: ok
 namespace SunamoBazosCrawler._sunamo;
 
 internal class SHSplit

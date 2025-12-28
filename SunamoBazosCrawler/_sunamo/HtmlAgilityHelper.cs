@@ -1,3 +1,4 @@
+// variables names: ok
 namespace SunamoBazosCrawler._sunamo;
 
 internal class HtmlAgilityHelper
@@ -16,22 +17,22 @@ internal class HtmlAgilityHelper
         //htmlDocument.OptionCheckSyntax = false;
         return htmlDocument;
     }
-    internal static HtmlNode NodeWithAttr(HtmlNode node, bool recursive, string tag, string attr, string attrValue,
-        bool contains = false)
+    internal static HtmlNode NodeWithAttr(HtmlNode node, bool isRecursive, string tag, string attribute, string expectedValue,
+        bool isContainsCheck = false)
     {
-        return NodesWithAttrWorker(node, recursive, tag, attr, attrValue, false, contains).FirstOrDefault();
+        return NodesWithAttrWorker(node, isRecursive, tag, attribute, expectedValue, false, isContainsCheck).FirstOrDefault();
     }
-    internal static List<HtmlNode> NodesWithAttr(HtmlNode node, bool recursive, string tag, string attr,
-        string attrValue, bool contains = false)
+    internal static List<HtmlNode> NodesWithAttr(HtmlNode node, bool isRecursive, string tag, string attribute,
+        string expectedValue, bool isContainsCheck = false)
     {
-        return NodesWithAttrWorker(node, recursive, tag, attr, attrValue, false, contains);
+        return NodesWithAttrWorker(node, isRecursive, tag, attribute, expectedValue, false, isContainsCheck);
     }
-    private static List<HtmlNode> NodesWithAttrWorker(HtmlNode node, bool recursive, string tag, string attribute,
-        string attributeValue, bool isWildCard, bool enoughIsContainsAttribute, bool searchAsSingleString = true)
+    private static List<HtmlNode> NodesWithAttrWorker(HtmlNode node, bool isRecursive, string tag, string attribute,
+        string expectedValue, bool isWildCard, bool isContainsCheck, bool isSingleStringSearch = true)
     {
         var result = new List<HtmlNode>();
-        RecursiveReturnTagsWithContainsAttr(result, node, recursive, tag, attribute, attributeValue, isWildCard,
-            enoughIsContainsAttribute, searchAsSingleString);
+        RecursiveReturnTagsWithContainsAttr(result, node, isRecursive, tag, attribute, expectedValue, isWildCard,
+            isContainsCheck, isSingleStringSearch);
         if (tag != TextNode) result = TrimTexts(result);
         return result;
     }
@@ -44,9 +45,9 @@ internal class HtmlAgilityHelper
     ///     A3 = remove #comment
     /// </summary>
     /// <param name="nodes"></param>
-    /// <param name="texts"></param>
-    /// <param name="comments"></param>
-    internal static List<HtmlNode> TrimTexts(List<HtmlNode> nodes, bool texts, bool comments = false)
+    /// <param name="isRemovingTextNodes"></param>
+    /// <param name="isRemovingComments"></param>
+    internal static List<HtmlNode> TrimTexts(List<HtmlNode> nodes, bool isRemovingTextNodes, bool isRemovingComments = false)
     {
         if (!ShouldTrimTexts) return nodes;
         var result = new List<HtmlNode>();
@@ -54,10 +55,10 @@ internal class HtmlAgilityHelper
         foreach (var item in nodes)
         {
             add = true;
-            if (texts)
+            if (isRemovingTextNodes)
                 if (item.Name == TextNode)
                     add = false;
-            if (comments)
+            if (isRemovingComments)
                 if (item.Name == "#comment")
                     add = false;
             if (add) result.Add(item);
@@ -69,28 +70,28 @@ internal class HtmlAgilityHelper
         if (tag == "*") return true;
         return node.Name == tag;
     }
-    private static bool HasTagAttr(HtmlNode item, string attribute, string attributeValue, bool isWildCard,
-        bool enoughIsContainsAttribute, bool searchAsSingleString)
+    private static bool HasTagAttr(HtmlNode node, string attribute, string expectedValue, bool isWildCard,
+        bool isContainsCheck, bool isSingleStringSearch)
     {
-        if (attributeValue == "*") return true;
+        if (expectedValue == "*") return true;
         var contains = false;
-        var attrValue = HtmlAssistant.GetValueOfAttribute(attribute, item);
-        if (enoughIsContainsAttribute)
+        var actualValue = HtmlAssistant.GetValueOfAttribute(attribute, node);
+        if (isContainsCheck)
         {
-            if (searchAsSingleString)
+            if (isSingleStringSearch)
             {
                 if (isWildCard)
-                    contains = SH.MatchWildcard(attrValue, attributeValue);
+                    contains = SH.MatchWildcard(actualValue, expectedValue);
                 else
-                    contains = attrValue.Contains(attributeValue);
+                    contains = actualValue.Contains(expectedValue);
                 //
             }
             else
             {
                 var containsAll = true;
-                var parts = SHSplit.Split(attributeValue, " ");
-                foreach (var item2 in parts)
-                    if (!attrValue.Contains(item2))
+                var parts = SHSplit.Split(expectedValue, " ");
+                foreach (var part in parts)
+                    if (!actualValue.Contains(part))
                     {
                         containsAll = false;
                         break;
@@ -100,37 +101,35 @@ internal class HtmlAgilityHelper
         }
         else
         {
-            contains = attrValue == attributeValue;
+            contains = actualValue == expectedValue;
         }
         return contains;
     }
-    internal static void RecursiveReturnTagsWithContainsAttr(List<HtmlNode> result, HtmlNode htmlNode, bool recursively,
-        string tag, string attribute, string attributeValue, bool isWildCard, bool enoughIsContainsAttribute,
-        bool searchAsSingleString = true)
+
+    internal static void RecursiveReturnTagsWithContainsAttr(List<HtmlNode> result, HtmlNode htmlNode, bool isRecursive,
+        string tag, string attribute, string expectedValue, bool isWildCard, bool isContainsCheck,
+        bool isSingleStringSearch = true)
     {
-        /*
-isWildCard -
-         */
         tag = tag.ToLower();
         //attribute = attribute.ToLower();
         //attributeValue = attribute.ToLower();
         if (htmlNode == null) return;
-        foreach (var item in htmlNode.ChildNodes)
+        foreach (var node in htmlNode.ChildNodes)
         {
-            var attrValue = HtmlAssistant.GetValueOfAttribute(attribute, item);
-            if (HasTagName(item, tag))
+            var actualValue = HtmlAssistant.GetValueOfAttribute(attribute, node);
+            if (HasTagName(node, tag))
             {
-                if (HasTagAttr(item, attribute, attributeValue, isWildCard, enoughIsContainsAttribute,
-                        searchAsSingleString)) result.Add(item);
-                if (recursively)
-                    RecursiveReturnTagsWithContainsAttr(result, item, recursively, tag, attribute, attributeValue, isWildCard,
-                        enoughIsContainsAttribute, searchAsSingleString);
+                if (HasTagAttr(node, attribute, expectedValue, isWildCard, isContainsCheck,
+                        isSingleStringSearch)) result.Add(node);
+                if (isRecursive)
+                    RecursiveReturnTagsWithContainsAttr(result, node, isRecursive, tag, attribute, actualValue, isWildCard,
+                        isContainsCheck, isSingleStringSearch);
             }
             else
             {
-                if (recursively)
-                    RecursiveReturnTagsWithContainsAttr(result, item, recursively, tag, attribute, attributeValue, isWildCard,
-                        enoughIsContainsAttribute, searchAsSingleString);
+                if (isRecursive)
+                    RecursiveReturnTagsWithContainsAttr(result, node, isRecursive, tag, attribute, actualValue, isWildCard,
+                        isContainsCheck, isSingleStringSearch);
             }
         }
     }

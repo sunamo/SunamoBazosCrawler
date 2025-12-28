@@ -1,14 +1,15 @@
+// variables names: ok
 namespace SunamoBazosCrawler._sunamo;
 
 internal class HtmlAssistant
 {
-    internal static string GetValueOfAttribute(string attributeName, HtmlNode node, bool trim = false)
+    internal static string GetValueOfAttribute(string attributeName, HtmlNode node, bool isTrimming = false)
     {
         object attribute = node.Attributes[attributeName]; // node.GetAttributeValue(attributeName, null);//
         if (attribute != null)
         {
             var value = ((HtmlAttribute)attribute).Value;
-            if (trim) value = value.Trim();
+            if (isTrimming) value = value.Trim();
 
             if (value == string.Empty) return "(null)";
 
@@ -18,23 +19,23 @@ internal class HtmlAssistant
         return string.Empty;
     }
 
-    internal static string InnerText(HtmlNode node, bool recursive, string tag, string attr, string attrValue,
-        bool contains = false)
+    internal static string InnerText(HtmlNode node, bool isRecursive, string tag, string attribute, string expectedValue,
+        bool isContainsCheck = false)
     {
-        return InnerContentWithAttr(node, recursive, tag, attr, attrValue, false, contains);
+        return InnerContentWithAttr(node, isRecursive, tag, attribute, expectedValue, false, isContainsCheck);
     }
     internal static string HtmlDecode(string htmlText)
     {
         return WebUtility.HtmlDecode(htmlText);
     }
-    internal static string InnerContentWithAttr(HtmlNode node, bool recursive, string tag, string attr,
-        string attrValue, bool html, bool contains = false)
+    internal static string InnerContentWithAttr(HtmlNode node, bool isRecursive, string tag, string attribute,
+        string expectedValue, bool isHtml, bool isContainsCheck = false)
     {
-        var node2 = HtmlAgilityHelper.NodeWithAttr(node, recursive, tag, attr, attrValue, contains);
+        var node2 = HtmlAgilityHelper.NodeWithAttr(node, isRecursive, tag, attribute, expectedValue, isContainsCheck);
         if (node2 != null)
         {
             var content = string.Empty;
-            if (html)
+            if (isHtml)
                 content = node2.InnerHtml;
             else
                 content = node2.InnerText;
