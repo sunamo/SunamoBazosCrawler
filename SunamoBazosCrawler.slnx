@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="SunamoBazosCrawler.Tests\SunamoBazosCrawler.Tests.csproj" />
+  <Project Path="RunnerBazosCrawler\RunnerBazosCrawler.csproj" />
+  <Project Path="SunamoBazosCrawler\SunamoBazosCrawler.csproj" />
+</Solution>
