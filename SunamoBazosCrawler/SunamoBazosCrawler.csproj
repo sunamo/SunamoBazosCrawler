@@ -11,7 +11,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
-    <Version>26.4.6.5</Version>
+    <Version>26.4.6.6</Version>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageReleaseNotes>feat: Improved code quality</PackageReleaseNotes>
     <IsPackable>true</IsPackable>
