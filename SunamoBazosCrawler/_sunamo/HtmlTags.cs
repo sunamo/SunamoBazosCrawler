@@ -1,20 +1,17 @@
 namespace SunamoBazosCrawler._sunamo;
 
 /// <summary>
-/// EN: Constants for HTML tag names
-/// CZ: Konstanty pro názvy HTML tagů
+/// Constants for HTML tag names.
 /// </summary>
 internal class HtmlTags
 {
     /// <summary>
-    /// EN: The "div" HTML tag
-    /// CZ: HTML tag "div"
+    /// The "div" HTML tag.
     /// </summary>
     internal const string Div = "div";
 
     /// <summary>
-    /// EN: The "h2" HTML tag (heading level 2)
-    /// CZ: HTML tag "h2" (nadpis úrovně 2)
+    /// The "h2" HTML tag (heading level 2).
     /// </summary>
     internal static string H2 = "h2";
 }

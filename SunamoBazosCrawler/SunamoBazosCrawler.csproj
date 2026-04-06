@@ -11,9 +11,9 @@
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
-    <Version>26.2.23.3</Version>
+    <Version>26.4.6.4</Version>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <PackageReleaseNotes>feat: fixing variables names</PackageReleaseNotes>
+    <PackageReleaseNotes>feat: Improved documentation</PackageReleaseNotes>
     <IsPackable>true</IsPackable>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <IncludeSymbols>true</IncludeSymbols>

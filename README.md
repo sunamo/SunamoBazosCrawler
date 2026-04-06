@@ -1,21 +1,21 @@
 # SunamoBazosCrawler
 
-parsing of advertisements from bazos.cz/.sk
+Parsing of advertisements from bazos.cz/.sk
 
 ## Overview
 
-SunamoBazosCrawler is part of the Sunamo package ecosystem, providing modular, platform-independent utilities for .NET development.
+SunamoBazosCrawler is part of the Sunamo package ecosystem, providing modular, platform-independent utilities for .NET development. It crawls and parses dating advertisements from the Bazos website.
 
 ## Main Components
 
 ### Key Classes
 
-- **BazosCrawlerHelper**
-- **DatingAd**
+- **BazosCrawlerHelper** - Helper class for crawling and parsing dating advertisements from Bazos website
+- **DatingAd** - Represents a dating advertisement with Title, Description, Price, and Location
 
 ### Key Methods
 
-- `ParseFromOnline()`
+- `BazosCrawlerHelper.ParseFromOnline(url, downloadContentFunc)` - Parses dating advertisements from the specified URL
 
 ## Installation
 
@@ -25,16 +25,20 @@ dotnet add package SunamoBazosCrawler
 
 ## Dependencies
 
-- **HtmlAgilityPack** (v1.12.0)
-- **Microsoft.Extensions.Logging.Abstractions** (v9.0.3)
+- **HtmlAgilityPack** (v1.12.4)
+- **Microsoft.Extensions.Logging.Abstractions** (v10.0.2)
+
+## Target Frameworks
+
+- net10.0
+- net9.0
+- net8.0
 
 ## Package Information
 
 - **Package Name**: SunamoBazosCrawler
-- **Version**: 25.6.7.1
-- **Target Framework**: net9.0
-- **Category**: Platform-Independent NuGet Package
-- **Source Files**: 10
+- **License**: MIT
+- **Authors**: www.sunamo.cz
 
 ## Related Packages
 

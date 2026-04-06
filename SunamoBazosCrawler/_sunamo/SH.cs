@@ -1,35 +1,31 @@
 namespace SunamoBazosCrawler._sunamo;
 
 /// <summary>
-/// EN: String Helper - utility class for string operations
-/// CZ: String Helper - pomocná třída pro operace s řetězci
+/// String helper - utility class for string operations.
 /// </summary>
 internal class SH
 {
     /// <summary>
-    /// EN: Matches a string against a wildcard pattern using ? and * wildcards
-    /// CZ: Porovná řetězec s wildcard vzorem používajícím ? a * wildcardy
+    /// Matches a string against a wildcard pattern using ? and * wildcards.
     /// </summary>
-    /// <param name="name">EN: String to match / CZ: Řetězec k porovnání</param>
-    /// <param name="mask">EN: Wildcard pattern to match against / CZ: Wildcard vzor k porovnání</param>
-    /// <returns>EN: True if string matches the pattern, false otherwise / CZ: True pokud řetězec odpovídá vzoru, jinak false</returns>
-    internal static bool MatchWildcard(string name, string mask)
+    /// <param name="text">String to match.</param>
+    /// <param name="pattern">Wildcard pattern to match against.</param>
+    /// <returns>True if string matches the pattern, false otherwise.</returns>
+    internal static bool MatchWildcard(string text, string pattern)
     {
-        return IsMatchRegex(name, mask, '?', '*');
+        return IsMatchRegex(text, pattern, '?', '*');
     }
 
     /// <summary>
-    /// EN: Checks if input matches a regex pattern with custom wildcard characters
-    /// CZ: Zkontroluje zda vstup odpovídá regex vzoru s vlastními wildcard znaky
+    /// Checks if input matches a regex pattern with custom wildcard characters.
     /// </summary>
-    /// <param name="input">EN: Input string to match / CZ: Vstupní řetězec k porovnání</param>
-    /// <param name="pattern">EN: Pattern with wildcards / CZ: Vzor s wildcardy</param>
-    /// <param name="singleWildcard">EN: Character for single character wildcard (typically '?') / CZ: Znak pro wildcard jednoho znaku (typicky '?')</param>
-    /// <param name="multipleWildcard">EN: Character for multiple character wildcard (typically '*') / CZ: Znak pro wildcard více znaků (typicky '*')</param>
-    /// <returns>EN: True if input matches the pattern, false otherwise / CZ: True pokud vstup odpovídá vzoru, jinak false</returns>
+    /// <param name="input">Input string to match.</param>
+    /// <param name="pattern">Pattern with wildcards.</param>
+    /// <param name="singleWildcard">Character for single character wildcard (typically '?').</param>
+    /// <param name="multipleWildcard">Character for multiple character wildcard (typically '*').</param>
+    /// <returns>True if input matches the pattern, false otherwise.</returns>
     private static bool IsMatchRegex(string input, string pattern, char singleWildcard, char multipleWildcard)
     {
-        // If I compared .vs with .vs, return false before
         if (input == pattern) return true;
         var escapedSingle = Regex.Escape(new string(singleWildcard, 1));
         var escapedMultiple = Regex.Escape(new string(multipleWildcard, 1));
