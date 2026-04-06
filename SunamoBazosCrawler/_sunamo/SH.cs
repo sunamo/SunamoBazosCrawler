@@ -19,20 +19,20 @@ internal class SH
     /// <summary>
     /// Checks if input matches a regex pattern with custom wildcard characters.
     /// </summary>
-    /// <param name="input">Input string to match.</param>
+    /// <param name="text">Text string to match against the pattern.</param>
     /// <param name="pattern">Pattern with wildcards.</param>
     /// <param name="singleWildcard">Character for single character wildcard (typically '?').</param>
     /// <param name="multipleWildcard">Character for multiple character wildcard (typically '*').</param>
     /// <returns>True if input matches the pattern, false otherwise.</returns>
-    private static bool IsMatchRegex(string input, string pattern, char singleWildcard, char multipleWildcard)
+    private static bool IsMatchRegex(string text, string pattern, char singleWildcard, char multipleWildcard)
     {
-        if (input == pattern) return true;
+        if (text == pattern) return true;
         var escapedSingle = Regex.Escape(new string(singleWildcard, 1));
         var escapedMultiple = Regex.Escape(new string(multipleWildcard, 1));
         pattern = Regex.Escape(pattern);
         pattern = pattern.Replace(escapedSingle, ".");
         pattern = "^" + pattern.Replace(escapedMultiple, ".*") + "$";
         var regex = new Regex(pattern);
-        return regex.IsMatch(input);
+        return regex.IsMatch(text);
     }
 }

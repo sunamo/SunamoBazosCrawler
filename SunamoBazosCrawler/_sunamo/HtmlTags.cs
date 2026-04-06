@@ -13,5 +13,5 @@ internal class HtmlTags
     /// <summary>
     /// The "h2" HTML tag (heading level 2).
     /// </summary>
-    internal static string H2 = "h2";
+    internal const string H2 = "h2";
 }

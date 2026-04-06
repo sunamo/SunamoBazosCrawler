@@ -6,12 +6,7 @@ namespace SunamoBazosCrawler._sunamo;
 internal class HtmlAttrs
 {
     /// <summary>
-    /// Full name for the "class" attribute.
+    /// The "class" HTML attribute (cannot use "class" as identifier due to C# keyword conflict).
     /// </summary>
-    internal static string ClassAttribute = "class";
-
-    /// <summary>
-    /// Shorthand for "class" attribute (cannot use "class" as identifier due to C# keyword conflict).
-    /// </summary>
-    internal static string CssClass = "class";
+    internal const string CssClass = "class";
 }

@@ -6,7 +6,11 @@ namespace SunamoBazosCrawler._sunamo;
 internal class HtmlAgilityHelper
 {
     internal const string TextNode = "#text";
-    internal static bool ShouldTrimTexts = true;
+
+    /// <summary>
+    /// Gets or sets whether text nodes should be trimmed from results.
+    /// </summary>
+    internal static bool ShouldTrimTexts { get; set; } = true;
 
     /// <summary>
     /// Creates a configured HtmlDocument instance for parsing HTML.
@@ -190,20 +194,12 @@ internal class HtmlAgilityHelper
         foreach (var node in parentNode.ChildNodes)
         {
             var actualValue = HtmlAssistant.GetValueOfAttribute(attribute, node);
-            if (HasTagName(node, tag))
-            {
-                if (HasTagAttr(node, attribute, expectedValue, isWildcard, isContainsCheck,
-                        isSingleStringSearch)) result.Add(node);
-                if (isRecursive)
-                    RecursiveReturnTagsWithContainsAttr(result, node, isRecursive, tag, attribute, actualValue, isWildcard,
-                        isContainsCheck, isSingleStringSearch);
-            }
-            else
-            {
-                if (isRecursive)
-                    RecursiveReturnTagsWithContainsAttr(result, node, isRecursive, tag, attribute, actualValue, isWildcard,
-                        isContainsCheck, isSingleStringSearch);
-            }
+            if (HasTagName(node, tag) && HasTagAttr(node, attribute, expectedValue, isWildcard, isContainsCheck,
+                    isSingleStringSearch))
+                result.Add(node);
+            if (isRecursive)
+                RecursiveReturnTagsWithContainsAttr(result, node, isRecursive, tag, attribute, actualValue, isWildcard,
+                    isContainsCheck, isSingleStringSearch);
         }
     }
 }
