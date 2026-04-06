@@ -14,16 +14,16 @@ public class BazosCrawlerHelper
         Func<string, Task<string>> downloadContentFunc)
     {
         var result = new List<DatingAd>();
-        await ParseFromOnline(url, result, downloadContentFunc);
+        await parseFromOnline(url, result, downloadContentFunc);
     }
 
     /// <summary>
-    /// Parses dating advertisements from the specified URL and adds them to the result list.
+    /// Parses dating advertisements from the specified URL and adds them to the provided list.
     /// </summary>
     /// <param name="url">The URL to parse advertisements from.</param>
-    /// <param name="result">List to store parsed advertisements.</param>
+    /// <param name="list">List to store parsed advertisements.</param>
     /// <param name="downloadContentFunc">Function to download or read content from the URL.</param>
-    private static async Task ParseFromOnline(string url, List<DatingAd> result,
+    private static async Task parseFromOnline(string url, List<DatingAd> list,
         Func<string, Task<string>> downloadContentFunc)
     {
         var html = await downloadContentFunc(url);
@@ -46,7 +46,7 @@ public class BazosCrawlerHelper
                 Price = HtmlAssistant.InnerText(item, true, HtmlTags.Div, HtmlAttrs.CssClass, "inzeraty"),
                 Location = HtmlAssistant.InnerText(item, true, HtmlTags.Div, HtmlAttrs.CssClass, "inzeratylok")
             };
-            result.Add(advertisement);
+            list.Add(advertisement);
         }
     }
 }

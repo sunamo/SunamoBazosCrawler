@@ -13,7 +13,7 @@ internal class SH
     /// <returns>True if string matches the pattern, false otherwise.</returns>
     internal static bool MatchWildcard(string text, string pattern)
     {
-        return IsMatchRegex(text, pattern, '?', '*');
+        return isMatchRegex(text, pattern, '?', '*');
     }
 
     /// <summary>
@@ -24,7 +24,7 @@ internal class SH
     /// <param name="singleWildcard">Character for single character wildcard (typically '?').</param>
     /// <param name="multipleWildcard">Character for multiple character wildcard (typically '*').</param>
     /// <returns>True if input matches the pattern, false otherwise.</returns>
-    private static bool IsMatchRegex(string text, string pattern, char singleWildcard, char multipleWildcard)
+    private static bool isMatchRegex(string text, string pattern, char singleWildcard, char multipleWildcard)
     {
         if (text == pattern) return true;
         var escapedSingle = Regex.Escape(new string(singleWildcard, 1));

@@ -39,7 +39,7 @@ internal class HtmlAgilityHelper
     internal static HtmlNode? NodeWithAttr(HtmlNode node, bool isRecursive, string tag, string attribute, string expectedValue,
         bool isContainsCheck = false)
     {
-        return NodesWithAttrWorker(node, isRecursive, tag, attribute, expectedValue, false, isContainsCheck).FirstOrDefault();
+        return nodesWithAttrWorker(node, isRecursive, tag, attribute, expectedValue, false, isContainsCheck).FirstOrDefault();
     }
 
     /// <summary>
@@ -55,7 +55,7 @@ internal class HtmlAgilityHelper
     internal static List<HtmlNode> NodesWithAttr(HtmlNode node, bool isRecursive, string tag, string attribute,
         string expectedValue, bool isContainsCheck = false)
     {
-        return NodesWithAttrWorker(node, isRecursive, tag, attribute, expectedValue, false, isContainsCheck);
+        return nodesWithAttrWorker(node, isRecursive, tag, attribute, expectedValue, false, isContainsCheck);
     }
 
     /// <summary>
@@ -70,7 +70,7 @@ internal class HtmlAgilityHelper
     /// <param name="isContainsCheck">Whether to use Contains instead of exact match.</param>
     /// <param name="isSingleStringSearch">Whether to search for single string or multiple parts.</param>
     /// <returns>List of matching HTML nodes.</returns>
-    private static List<HtmlNode> NodesWithAttrWorker(HtmlNode node, bool isRecursive, string tag, string attribute,
+    private static List<HtmlNode> nodesWithAttrWorker(HtmlNode node, bool isRecursive, string tag, string attribute,
         string expectedValue, bool isWildcard, bool isContainsCheck, bool isSingleStringSearch = true)
     {
         var result = new List<HtmlNode>();
@@ -122,7 +122,7 @@ internal class HtmlAgilityHelper
     /// <param name="node">HTML node to check.</param>
     /// <param name="tag">Tag name to match (use "*" for any tag).</param>
     /// <returns>True if tag matches, false otherwise.</returns>
-    private static bool HasTagName(HtmlNode node, string tag)
+    private static bool hasTagName(HtmlNode node, string tag)
     {
         if (tag == "*") return true;
         return node.Name == tag;
@@ -138,7 +138,7 @@ internal class HtmlAgilityHelper
     /// <param name="isContainsCheck">Whether to use Contains instead of exact match.</param>
     /// <param name="isSingleStringSearch">Whether to search for single string or multiple parts.</param>
     /// <returns>True if attribute matches, false otherwise.</returns>
-    private static bool HasTagAttr(HtmlNode node, string attribute, string expectedValue, bool isWildcard,
+    private static bool hasTagAttr(HtmlNode node, string attribute, string expectedValue, bool isWildcard,
         bool isContainsCheck, bool isSingleStringSearch)
     {
         if (expectedValue == "*") return true;
@@ -194,7 +194,7 @@ internal class HtmlAgilityHelper
         foreach (var node in parentNode.ChildNodes)
         {
             var actualValue = HtmlAssistant.GetValueOfAttribute(attribute, node);
-            if (HasTagName(node, tag) && HasTagAttr(node, attribute, expectedValue, isWildcard, isContainsCheck,
+            if (hasTagName(node, tag) && hasTagAttr(node, attribute, expectedValue, isWildcard, isContainsCheck,
                     isSingleStringSearch))
                 result.Add(node);
             if (isRecursive)
