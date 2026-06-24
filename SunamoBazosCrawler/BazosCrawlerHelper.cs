@@ -1,15 +1,7 @@
 namespace SunamoBazosCrawler;
 
-/// <summary>
-/// Helper class for crawling and parsing dating advertisements from Bazos website.
-/// </summary>
 public class BazosCrawlerHelper
 {
-    /// <summary>
-    /// Parses dating advertisements from the specified URL.
-    /// </summary>
-    /// <param name="url">The URL to parse advertisements from.</param>
-    /// <param name="downloadContentFunc">Function to download or read content from the URL.</param>
     public static async Task ParseFromOnline(string url,
         Func<string, Task<string>> downloadContentFunc)
     {
@@ -17,12 +9,6 @@ public class BazosCrawlerHelper
         await parseFromOnline(url, result, downloadContentFunc);
     }
 
-    /// <summary>
-    /// Parses dating advertisements from the specified URL and adds them to the provided list.
-    /// </summary>
-    /// <param name="url">The URL to parse advertisements from.</param>
-    /// <param name="list">List to store parsed advertisements.</param>
-    /// <param name="downloadContentFunc">Function to download or read content from the URL.</param>
     private static async Task parseFromOnline(string url, List<DatingAd> list,
         Func<string, Task<string>> downloadContentFunc)
     {
