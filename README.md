@@ -1,5 +1,10 @@
 # SunamoBazosCrawler
 
+## Short description
+
+Knihovna pro parsování inzerátů z webů bazos.cz a bazos.sk. Je součástí sady balíčků Sunamo.
+
+
 Parsing of advertisements from bazos.cz/.sk
 
 ## Overview
