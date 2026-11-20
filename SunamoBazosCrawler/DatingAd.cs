@@ -1,4 +1,3 @@
-// variables names: ok
 namespace SunamoBazosCrawler;
 
 public class DatingAd
