@@ -1,7 +1,15 @@
 namespace SunamoBazosCrawler;
 
+/// <summary>
+/// Represents the bazos crawler helper type.
+/// </summary>
 public class BazosCrawlerHelper
 {
+    /// <summary>
+    /// Parse from online.
+    /// </summary>
+    /// <param name="url">The url.</param>
+    /// <param name="downloadContentFunc">The download content func.</param>
     public static async Task ParseFromOnline(string url,
         Func<string, Task<string>> downloadContentFunc)
     {
