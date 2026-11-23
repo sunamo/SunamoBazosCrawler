@@ -1,4 +1,3 @@
-// variables names: ok
 namespace RunnerBazosCrawler;
 
 internal class Program
